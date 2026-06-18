@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var currentDeltaX = 0;
     var isDragging = false;
     var activePointerId = null;
+    var isTouchDragging = false;
     var swipeThreshold = 0.18;
 
     function getSlideWidth() {
@@ -150,32 +151,49 @@ document.addEventListener('DOMContentLoaded', function () {
 
       gallery.addEventListener('pointerup', releasePointer);
       gallery.addEventListener('pointercancel', releasePointer);
-    } else {
-      gallery.addEventListener('touchstart', function (event) {
-        startDrag(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
-      }, { passive: true });
-
-      gallery.addEventListener('touchmove', function (event) {
-        moveDrag(event.changedTouches[0].clientX, event.changedTouches[0].clientY, event);
-      }, { passive: false });
-
-      gallery.addEventListener('touchend', function () {
-        endDrag();
-      }, { passive: true });
-
-      gallery.addEventListener('touchcancel', function () {
-        endDrag();
-      }, { passive: true });
     }
+
+    gallery.addEventListener('touchstart', function (event) {
+      if (activePointerId !== null || !event.changedTouches.length) {
+        return;
+      }
+      isTouchDragging = true;
+      startDrag(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+    }, { passive: true });
+
+    gallery.addEventListener('touchmove', function (event) {
+      if (!isTouchDragging || !event.changedTouches.length) {
+        return;
+      }
+      moveDrag(event.changedTouches[0].clientX, event.changedTouches[0].clientY, event);
+    }, { passive: false });
+
+    function releaseTouch() {
+      if (!isTouchDragging) {
+        return;
+      }
+      isTouchDragging = false;
+      endDrag();
+    }
+
+    gallery.addEventListener('touchend', releaseTouch, { passive: true });
+    gallery.addEventListener('touchcancel', releaseTouch, { passive: true });
+    gallery.addEventListener('dragstart', function (event) {
+      event.preventDefault();
+    });
 
     if (typeof mobileQuery.addEventListener === 'function') {
       mobileQuery.addEventListener('change', function () {
         isDragging = false;
+        isTouchDragging = false;
+        activePointerId = null;
         renderSlide(currentSlide, true);
       });
     } else if (typeof mobileQuery.addListener === 'function') {
       mobileQuery.addListener(function () {
         isDragging = false;
+        isTouchDragging = false;
+        activePointerId = null;
         renderSlide(currentSlide, true);
       });
     }
