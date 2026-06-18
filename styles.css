@@ -26,7 +26,7 @@ html {
 body {
     font-family: 'Outfit', 'M PLUS Rounded 1c', sans-serif;
     background:
-        radial-gradient(circle at top, rgba(255, 255, 255, 0.85), rgba(255, 246, 229, 0.94) 34%, #fff7ea 100%);
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.82), rgba(255, 226, 193, 0.92) 34%, #f8cfa8 100%);
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
@@ -70,19 +70,26 @@ h1, h2, h3 { margin-bottom: 1rem; }
     aspect-ratio: 1;
     border-radius: 50%;
     opacity: 0.28;
+    --temari-green: #b9ddb1;
+    --temari-green-deep: #9fd094;
+    --temari-cream: #fff6e3;
+    --temari-cream-deep: #f4e8cc;
     background:
-        radial-gradient(circle at 27% 22%, rgba(255,255,255,1) 0 11%, rgba(255,255,255,0.68) 11% 20%, transparent 21%),
-        radial-gradient(circle at 70% 76%, rgba(92, 116, 83, 0.34) 0 17%, rgba(92, 116, 83, 0.18) 17% 30%, transparent 31%),
-        radial-gradient(circle at center, rgba(255,255,255,0.95) 0 5%, transparent 5.5%),
-        radial-gradient(circle at center, transparent 0 55%, rgba(255,255,255,0.74) 55% 58%, transparent 58.5%),
-        linear-gradient(135deg, transparent 39%, rgba(126, 191, 144, 0.96) 39% 44%, rgba(255,255,255,0.8) 44% 47%, rgba(239, 152, 82, 0.96) 47% 52%, transparent 52% 100%),
-        linear-gradient(-135deg, transparent 37%, rgba(126, 191, 144, 0.92) 37% 42%, rgba(255,255,255,0.82) 42% 45%, rgba(239, 152, 82, 0.92) 45% 50%, transparent 50% 100%),
-        repeating-conic-gradient(from 0deg, rgba(255,255,255,0.82) 0deg 6deg, rgba(239, 152, 82, 0.96) 6deg 14deg, rgba(255,255,255,0.82) 14deg 20deg, rgba(126, 191, 144, 0.92) 20deg 28deg),
-        radial-gradient(circle at 35% 30%, rgba(255,255,255,0.98), rgba(255, 215, 168, 0.98) 40%, rgba(239, 152, 82, 0.9) 70%, rgba(169, 220, 181, 0.92) 100%);
+        radial-gradient(circle at center, rgba(255,255,255,0.98) 0 5%, transparent 5.5%),
+        radial-gradient(circle at center, transparent 0 33%, rgba(255,255,255,0.8) 33% 35%, transparent 35.5%),
+        radial-gradient(circle at center, transparent 0 56%, rgba(255,255,255,0.72) 56% 58%, transparent 58.5%),
+        repeating-conic-gradient(
+            from -6deg,
+            var(--temari-cream) 0deg 10deg,
+            var(--temari-green) 10deg 28deg,
+            var(--temari-cream) 28deg 34deg,
+            var(--temari-green-deep) 34deg 52deg
+        ),
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,0.95), var(--temari-cream) 34%, var(--temari-cream-deep) 56%, var(--temari-green) 78%, var(--temari-green-deep) 100%);
     box-shadow:
-        inset -16px -18px 28px rgba(72, 88, 64, 0.34),
-        inset 12px 12px 18px rgba(255, 255, 255, 0.48),
-        0 18px 34px rgba(132, 98, 74, 0.18);
+        inset -16px -18px 28px rgba(100, 130, 92, 0.24),
+        inset 12px 12px 18px rgba(255, 255, 255, 0.5),
+        0 18px 34px rgba(132, 122, 98, 0.16);
     filter: blur(0.1px);
     animation: temariDrift var(--duration) linear infinite;
 }
@@ -97,20 +104,25 @@ h1, h2, h3 { margin-bottom: 1rem; }
 
 .temari::before {
     background:
-        radial-gradient(circle at 29% 26%, rgba(255,255,255,0.62) 0 9%, rgba(255,255,255,0.2) 9% 13%, transparent 14%),
-        radial-gradient(circle at center, transparent 0 21%, rgba(255,255,255,0.72) 21% 23%, transparent 23.5%),
-        repeating-conic-gradient(from 12deg, rgba(255,255,255,0.72) 0deg 4deg, rgba(239, 152, 82, 0.8) 4deg 10deg, rgba(255,255,255,0.72) 10deg 14deg, rgba(126, 191, 144, 0.78) 14deg 20deg);
+        radial-gradient(circle at center, transparent 0 24%, rgba(255,255,255,0.84) 24% 26%, transparent 26.5%),
+        repeating-conic-gradient(
+            from 10deg,
+            rgba(255,255,255,0.9) 0deg 3deg,
+            transparent 3deg 29deg,
+            rgba(255,255,255,0.82) 29deg 32deg,
+            transparent 32deg 60deg
+        );
     mix-blend-mode: screen;
     opacity: 0.98;
 }
 
 .temari::after {
     inset: 18%;
-    border: 1px solid rgba(255,255,255,0.46);
+    border: 1px solid rgba(255,255,255,0.42);
     box-shadow:
-        inset -10px -10px 16px rgba(82, 104, 74, 0.34),
-        inset 6px 6px 10px rgba(255,255,255,0.4);
-    opacity: 0.7;
+        inset -10px -10px 16px rgba(108, 144, 102, 0.18),
+        inset 6px 6px 10px rgba(255,255,255,0.34);
+    opacity: 0.64;
 }
 
 .temari-a { --size: 88px; --duration: 18s; top: -4%; left: 4%; }
@@ -126,19 +138,19 @@ h1, h2, h3 { margin-bottom: 1rem; }
 
 @keyframes temariDrift {
     0% {
-        transform: translate3d(0, -18px, 0) rotate(0deg);
+        transform: translate3d(-18px, 2px, 0) rotate(0deg);
     }
     25% {
-        transform: translate3d(16px, 24px, 0) rotate(8deg);
+        transform: translate3d(-4px, 10px, 0) rotate(90deg);
     }
     50% {
-        transform: translate3d(-12px, 66px, 0) rotate(-6deg);
+        transform: translate3d(18px, 4px, 0) rotate(180deg);
     }
     75% {
-        transform: translate3d(18px, 104px, 0) rotate(10deg);
+        transform: translate3d(8px, 14px, 0) rotate(270deg);
     }
     100% {
-        transform: translate3d(-10px, 144px, 0) rotate(2deg);
+        transform: translate3d(-14px, 6px, 0) rotate(360deg);
     }
 }
 
