@@ -294,9 +294,8 @@ nav a:hover { color: var(--accent-color); }
     --rot: -7deg;
     transform: rotate(var(--rot));
     animation-delay: 3s;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
-    background: #9bc54c;
 }
 .item-5 { bottom: 6%; left: 50%; transform: translateX(-50%); --rot: 0deg; animation: floating-center 8s infinite ease-in-out; animation-delay: 4s; width: 420px; height: 320px; object-fit: contain; }
 
